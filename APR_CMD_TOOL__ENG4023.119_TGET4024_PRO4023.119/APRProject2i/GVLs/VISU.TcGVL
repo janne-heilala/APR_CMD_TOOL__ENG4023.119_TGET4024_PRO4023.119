@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <GVL Name="VISU" Id="{028a7465-f909-40fb-a08e-8c818fe3532d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	bRunning: BOOL;	
+	sState :STRING; (*tilatietoa, 80 merkkiä, muutoin string(255) jolloin merkkien pituus 255*)
+// yksi merkki on aina yksi byte
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

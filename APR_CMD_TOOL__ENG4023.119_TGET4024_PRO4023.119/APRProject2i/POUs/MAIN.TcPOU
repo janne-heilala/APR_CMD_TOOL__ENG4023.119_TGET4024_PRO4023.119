@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="MAIN" Id="{9073a552-bc51-47bc-a064-e3f15f7ee309}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	meter1: INT;
+	meter2: INT;	
+	meter3: INT;	
+	meter4: INT;	
+	meter5: INT;	
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	idx: BOOL;
+	idxDev: BOOL;
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+start item = [] consist of fx1,fx2,fx3,fx4,fx5 and are assigned to output terminals 
+meter = [] sample consists of metrics conversions from LREAL TO INT and loses some information
+io.pX_REF = [] sample commandsio.p1_REF,io.p2_REF,io.p3_REF,io.p4_REF,io.p5_REF vars interconnected to ->
+IF -loop where when assigned True enables IO variable write to io.k1_REF,io.k2_REF,io.k3_REF,io.k4_REF,io.k5_REF
+in which assigned vars are INTs and enable to control flow directly from the terminal output to item input. 
+*)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* CURRENT CONTROL *) (* *) (* *) (* *) (* *) (* *)
+IF IO.p1_REF = TRUE THEN
+	IO.k1_REF:=10000;
+	ELSE
+		IO.k1_REF:=0;	
+END_IF
+(* *) (* *) (* *) (* *) (* VOLTAGE CONTROL *) (* *) (* *) (* *) (* *) (* *)
+IF IO.p2_REF = TRUE THEN
+	IO.k2_REF:=10000;
+	ELSE
+		IO.k2_REF:=0;	
+END_IF
+(* *) (* *) (* *) (* *) (* VOLTAGE CONTROL *) (* *) (* *) (* *) (* *) (* *)
+IF IO.p3_REF = TRUE THEN
+	IO.k3_REF:=10000;
+	ELSE
+		IO.k3_REF:=0;	
+END_IF
+(* *) (* *) (* *) (* *) (* VOLTAGE CONTROL *) (* *) (* *) (* *) (* *) (* *)
+IF IO.p4_REF = TRUE THEN
+	IO.k4_REF:=10000;
+	ELSE
+		IO.k4_REF:=0;	
+END_IF
+(* *) (* *) (* *) (* *) (* VOLTAGE CONTROL *) (* *) (* *) (* *) (* *) (* *)
+IF IO.p5_REF = TRUE THEN
+	IO.k5_REF:=10000;
+	ELSE
+		IO.k5_REF:=0;	
+END_IF
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+IF IO.p1_REF = TRUE THEN
+	IO.k1_REF:=10000;
+	ELSE
+		IO.k1_REF:=0;	
+END_IF
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* CLOSES ALL VALVES *) (* *) (* *) (* *) (* *) (* *)
+IF IO.erikoismuuttujaSum=TRUE OR io.r1_REF =TRUE AND io.r2_REF =TRUE AND io.r3_REF =TRUE AND io.r4_REF =TRUE AND io.r5_REF =TRUE AND io.r6_REF =TRUE AND io.v1_REF =TRUE AND io.v2_REF =TRUE AND idx =TRUE THEN
+		idx:=TRUE;
+	io.r1_REF:=TRUE;
+	io.r2_REF:=TRUE;	
+			io.r3_REF:=TRUE;
+	io.r4_REF:=TRUE;
+			io.r5_REF:=TRUE;
+	io.r6_REF:=TRUE;
+			io.v1_REF:=TRUE;
+	io.v2_REF:=TRUE;
+	END_IF
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* KEEPS VALVES CLOSED *) (* *) (* *) (* *) (* *) (* *)
+IF IO.erikoismuuttujaSum=FALSE AND idx=TRUE THEN
+	idx:=FALSE;
+			io.r1_REF:=FALSE;
+	io.r2_REF:=FALSE;
+			io.r3_REF:=FALSE;
+	io.r4_REF:=FALSE;
+			io.r5_REF:=FALSE;
+	io.r6_REF:=FALSE;
+			io.v1_REF:=FALSE;
+	io.v2_REF:=FALSE;
+END_IF
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+///////////////////////////////////////////////////////////////////////////
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+///////////////////////////////////////////////////////////////////////////
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(*CONVERTS LREAL ITEM OUTPUTS INTO TERMINAL INPUTS OF INT OF REAL WORLD SCALE*)
+meter1:=io.UI1_REF; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // AGD ? CURRENT
+meter2:=io.f2_REF/65; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+meter3:=io.f3_REF/65; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+meter4:=io.f4_REF;//65 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+meter5:=io.f5_REF;//520 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+// k1_REF AS OVERRIDING ODD INPUT VALUES
+// 
+// meter1:=io.k1_REF/31 (* N ml/min *) (*/819.5*100*); //ADD CONVERSION // AGD ? CURRENT
+// meter2:=io.k2_REF/31 (* N ml/min *) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+// meter3:=io.k3_REF/31 (* N ml/min *) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+// meter4:=io.k4_REF/31 (* N ml/min *) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+// meter5:=io.k5_REF/31 (* N ml/min *) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+//  
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(*CONVERTS LREAL ITEM OUTPUTS INTO TERMINAL INPUTS OF INT OF REAL WORLD SCALE*)
+io.k1_REF:=65*io.UI1_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //OK
+io.k2_REF:=65*io.UI2_REF; //30 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+io.k3_REF:=65*io.UI3_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+io.k4_REF:=65*io.UI4_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+io.k5_REF:=30*io.UI5_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+
+
+
+IF visu.bRunning=TRUE THEN
+	VISU.sState := 'running';
+ELSE
+	VISU.sState := 'stopped';
+END_IF
+
+
+
+
+IF io.fx1_REF=FALSE THEN
+	meter1:=0; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // AGD ? CURRENT
+	meter2:=0; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	meter3:=0; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	meter4:=0;//65 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	meter5:=0;//520 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	io.UI1_REF:=0;
+	io.UI2_REF:=0;
+	io.UI3_REF:=0;
+	io.UI4_REF:=0;
+	io.UI5_REF:=0;
+ELSIF io.fx1_REF=FALSE THEN
+	meter1:=io.UI1_REF; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // AGD ? CURRENT
+	meter2:=io.f2_REF; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	meter3:=io.f3_REF; (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	meter4:=io.f4_REF;//65 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	meter5:=io.f5_REF;//520 (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE
+	io.k1_REF:=65*io.UI1_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //OK
+	io.k2_REF:=65*io.UI2_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+	io.k3_REF:=65*io.UI3_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+	io.k4_REF:=65*io.UI4_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+	io.k5_REF:=30*io.UI5_REF;  (*25 ml/min*) (*/819.5*100*); //ADD CONVERSION // VOLTAGE //
+END_IF
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="360" Count="1" />
+      <LineId Id="363" Count="3" />
+      <LineId Id="362" Count="0" />
+      <LineId Id="349" Count="4" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="328" Count="1" />
+      <LineId Id="269" Count="0" />
+      <LineId Id="7" Count="3" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="296" Count="4" />
+      <LineId Id="295" Count="0" />
+      <LineId Id="302" Count="4" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="308" Count="4" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="314" Count="4" />
+      <LineId Id="313" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="319" Count="5" />
+      <LineId Id="290" Count="4" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="338" Count="3" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="48" Count="6" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="335" Count="2" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="219" Count="6" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="134" Count="1" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="242" Count="0" />
+      <LineId Id="244" Count="0" />
+      <LineId Id="394" Count="0" />
+      <LineId Id="383" Count="0" />
+      <LineId Id="388" Count="3" />
+      <LineId Id="393" Count="0" />
+      <LineId Id="384" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="330" Count="0" />
+      <LineId Id="246" Count="0" />
+      <LineId Id="331" Count="2" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="410" Count="0" />
+      <LineId Id="414" Count="3" />
+      <LineId Id="409" Count="0" />
+      <LineId Id="345" Count="3" />
+      <LineId Id="247" Count="1" />
+      <LineId Id="435" Count="5" />
+      <LineId Id="250" Count="4" />
+      <LineId Id="444" Count="0" />
+      <LineId Id="447" Count="3" />
+      <LineId Id="445" Count="0" />
+      <LineId Id="458" Count="2" />
+      <LineId Id="462" Count="1" />
+      <LineId Id="452" Count="5" />
+      <LineId Id="465" Count="3" />
+      <LineId Id="451" Count="0" />
+      <LineId Id="446" Count="0" />
+      <LineId Id="256" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

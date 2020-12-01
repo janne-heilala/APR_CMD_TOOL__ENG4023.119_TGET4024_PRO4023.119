@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <GVL Name="IO" Id="{101b8e4c-439e-4bd2-9517-8657f684f229}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	QualAck AT %I*:BOOL:=TRUE;
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	p1_REF AT %I* : BOOL := FALSE; (*non-formal format: used with all dirxd*)
+	p2_REF AT %I* : BOOL := FALSE; 
+	p3_REF AT %I* : BOOL := FALSE;
+	p4_REF AT %I* : BOOL := FALSE; 
+	p5_REF AT %I* : BOOL := FALSE; 
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	erikoismuuttujaSum AT %I* : BOOL := FALSE; 
+	erikoismuuttujaDev AT %I* : BOOL := FALSE; 
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	r1_REF AT %Q* : BOOL := FALSE; (*non-formal format: used with all dotxd*)
+	r2_REF AT %Q* : BOOL := FALSE; 
+	r3_REF AT %Q* : BOOL := FALSE;
+	r4_REF AT %Q* : BOOL := FALSE; 
+	r5_REF AT %Q* : BOOL := FALSE; (*non-formal format: used with all dotxd*)
+	r6_REF AT %Q* : BOOL := FALSE; 
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	fx1_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx2_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx3_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx4_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx5_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx6_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx7_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 
+	fx8_REF AT %Q* : BOOL := FALSE; (* FMC 12 VDC BOOL 1|0 *) 	
+	 (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	v1_REF AT %Q* : BOOL := FALSE;
+	v2_REF AT %Q* : BOOL := FALSE; 
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	f1_REF AT %I*: INT; (* measured value (analog output for FMC, analog input for terminal, page 15) *) 
+	f2_REF AT %I*: INT; (* measured value (analog output for FMC, analog input for terminal, page 15) *) 
+	f3_REF AT %I*: INT; (* measured value (analog output for FMC, analog input for terminal, page 15) *) 
+	f4_REF AT %I*: INT; (* measured value (analog output for FMC, analog input for terminal, page 15) *) 
+	f5_REF AT %I*: INT; (* measured value (analog output for FMC, analog input for terminal, page 15) *) 
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	(* *) (* *) (* *) (* *) (* USER INPUT *) (* *) (* *) (* *) (* *) (* *) (* *) 	
+	UI1_REF : INT; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	UI2_REF : INT; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	UI3_REF : INT; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	UI4_REF : INT; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	UI5_REF : INT; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	(* *) (* *) (* *) (* *) (* CONVERSION *) (* *) (* *) (* *) (* *) (* *) (* *) 	
+//	c1_REF : INT :=31; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+//	c2_REF : INT :=31; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+//	c3_REF : INT :=31; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+//	c4_REF : INT :=31; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+//	c5_REF : INT :=31; // default = 31 IF scale = 15633 (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+	k1_REF AT %Q*: INT; (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	k2_REF AT %Q*: INT; (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	k3_REF AT %Q*: INT; (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	k4_REF AT %Q*: INT; (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	k5_REF AT %Q*: INT; (* setpoint analog input for FMC, analog output for terminal, page 15) *)
+	(* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *) (* *)
+
+	
+	
+	
+	
+	 // INT 15633 ja flow 30 ml/min 
+	
+	(* assign to term 3 KL3102 DATA IN *)
+
+	
+	
+
+	
+
+
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

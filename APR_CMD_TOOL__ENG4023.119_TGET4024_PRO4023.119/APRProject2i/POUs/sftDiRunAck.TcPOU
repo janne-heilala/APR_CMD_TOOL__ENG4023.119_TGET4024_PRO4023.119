@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="sftDiRunAck" Id="{a94781af-3b75-447b-9962-1814d82677e0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK sftDiRunAck
+VAR_INPUT
+	sftDiRunIntrinsic1:sftDiCondAck;
+	sftDiRunIntrinsic2:sftDiCondAck;	
+	sftDiRunIntrinsic3:sftDiCondAck;
+	sftDiRunIntrinsic4:sftDiCondAck;
+END_VAR
+
+VAR_OUTPUT	
+	pnact1:=sftDoModule.sftDoRunVE1;
+	pnact2:=sftDoModule.sftDoRunVE2;
+	pnact3:=sftDoModule.sftDoRunVE3;
+	pnact4:=sftDoModule.sftDoRunVE4;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[sftDiRunIntrinsic1(sftDiModule.sftDiRunVE1:= IO.QualAck, sentREF1=> sftDoModule.sftDoRunVE1);
+sftDiRunIntrinsic2(sftDiModule.sftDiRunVE2:= IO.QualAck, sentREF1=> sftDoModule.sftDoRunVE2);
+sftDiRunIntrinsic3(sftDiModule.sftDiRunVE3:= IO.QualAck, sentREF1=> sftDoModule.sftDoRunVE3);
+sftDiRunIntrinsic4(sftDiModule.sftDiRunVE4:= IO.QualAck, sentREF1=> sftDoModule.sftDoRunVE4);]]></ST>
+    </Implementation>
+    <LineIds Name="sftDiRunAck">
+      <LineId Id="16" Count="0" />
+      <LineId Id="47" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

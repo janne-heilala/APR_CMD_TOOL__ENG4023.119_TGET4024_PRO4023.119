@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <POU Name="StartVisu" Id="{1c588346-da7f-4d04-bd3b-df15b94685cb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM StartVisu
+
+VAR_INPUT
+    NETID     : T_AmsNetId;
+    PATHSTR   : T_MaxString;
+    DIRNAME   : T_MaxString;
+    COMNDLINE : T_MaxString;
+    START     : BOOL;
+    TMOUT     : TIME := DEFAULT_ADS_TIMEOUT;
+END_VAR
+
+
+
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="StartVisu">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

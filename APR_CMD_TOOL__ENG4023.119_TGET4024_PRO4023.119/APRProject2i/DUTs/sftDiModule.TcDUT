@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.0">
+  <DUT Name="sftDiModule" Id="{4439424d-de4d-4b68-b826-5bfee1d5b469}">
+    <Declaration><![CDATA[TYPE sftDiModule :
+STRUCT
+	sftDiRunVE1: 							io.p1_REF;
+	sftDiRunVE2:  			 				io.p2_REF;
+	sftDiRunVE3:  							io.p3_REF;
+	sftDiRunVE4:  			 				io.p4_REF;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
